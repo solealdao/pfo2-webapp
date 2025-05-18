@@ -4,7 +4,7 @@ services:
    nginx:
       image: nginx
       ports:
-         - '8080:80'
+         - '8080:80' # Mapea puerto 80 del contenedor al 8080 del host
       volumes:
          - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       depends_on:
@@ -18,7 +18,7 @@ services:
          MYSQL_USER: test
          MYSQL_PASSWORD: test
       ports:
-         - '3307:3306'
+         - '3307:3306' # Expone la base de datos en el puerto 3307 local
       volumes:
          - mysql-data:/var/lib/mysql
 
@@ -27,7 +27,7 @@ services:
       depends_on:
          - mysql-db
       expose:
-         - '3000'
+         - '3000' # Expone el puerto 3000 para comunicación interna con nginx
 
 volumes:
    mysql-data:
